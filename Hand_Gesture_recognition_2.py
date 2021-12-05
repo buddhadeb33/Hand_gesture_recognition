@@ -54,6 +54,10 @@ with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.5) a
 
         # Show the final output
 
+            # show the prediction on the frame
+            cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                        1, (0, 0, 255), 2, cv2.LINE_AA)
+
         cv2.imshow("Hand Gesture Tracking", image)
 
         if cv2.waitKey(1) == ord('q'):
