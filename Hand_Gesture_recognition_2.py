@@ -15,6 +15,12 @@ logger = logging.getLogger(__name__)
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 
+# Load class names
+f = open('gesture.names', 'r')
+classNames = f.read().split('\n')
+f.close()
+print(classNames)
+
 # Video Capture
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.5) as hands:
@@ -51,12 +57,6 @@ with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.5) a
         # os.mkdir('Output Images')
 
         # cv2.imwrite(os.path.join('Output Images', '{}.jpg'.format(uuid.uuid1())), image)
-
-        # Show the final output
-
-            # show the prediction on the frame
-            cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
-                        1, (0, 0, 255), 2, cv2.LINE_AA)
 
         cv2.imshow("Hand Gesture Tracking", image)
 
